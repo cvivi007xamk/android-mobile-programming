@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Clothes</string>
+    <string name="result_text">Result</string>
+    <string name="add_text">Add</string>
+    <string name="enter_a_number_text">Enter a number</string>
+    <string name="roll_text">Roll</string>
+    <string name="second_activity">second activity</string>
+    <string name="search">search</string>
+    <string name="google">google</string>
+    <string name="hello_world">Hello world!</string>
 </resources>
