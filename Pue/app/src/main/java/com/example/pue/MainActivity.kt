@@ -1,5 +1,6 @@
 package com.example.pue
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,6 +13,8 @@ import com.example.pue.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
+    private lateinit var listIntent: Intent
+
 
     //Variable to handle grid/linear layout state. This is changed from the menu button.
     private var isLinearLayoutManager = true
@@ -63,9 +66,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.readyBtn.setOnClickListener { moveToNextScreen() }
         recyclerView = binding.recyclerView
         // Sets the LinearLayoutManager of the recyclerview
         chooseLayout()
 
+    }
+
+    private fun moveToNextScreen() {
+        intent = Intent(this, DressingActivity::class.java)
+        // move a list as extra
+      //  intent.putExtra(DressingActivity.LETTER, holder.clothName.text.toString())
+        startActivity(intent)
     }
 }

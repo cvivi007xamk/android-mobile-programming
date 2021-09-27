@@ -3,6 +3,7 @@ package com.example.pue
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pue.data.DataSource
+import com.example.pue.model.Cloth
 
 
 /**
@@ -22,8 +24,7 @@ class ClothingAdapter(private val context: Context?):
     RecyclerView.Adapter<ClothingAdapter.ClothingViewHolder>() {
 
     val dataset = DataSource.clothes
-    // Generates a [CharRange] from 'A' to 'Z' and converts it to a list
-   // private val list = ('A').rangeTo('Z').toList()
+    var chosenClothes: MutableList<Cloth> = mutableListOf()
 
     /**
      * Provides a reference for the views needed to display items in your list.
@@ -31,7 +32,7 @@ class ClothingAdapter(private val context: Context?):
     class ClothingViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view!!.findViewById(R.id.cloth_image)
         //Seuraavaa ei tarvita?
-       // val cardItem = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
+        val cardItem = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
         val clothName = view.findViewById<TextView>(R.id.cloth_name)
     }
 
@@ -59,11 +60,14 @@ class ClothingAdapter(private val context: Context?):
         val clothItem = dataset[position]
         holder.clothName.text = clothItem.name
         holder.imageView.setImageResource(clothItem.imageResourceId)
-        holder.imageView.setOnClickListener {
-            val context = holder.view.context
-            val intent = Intent(context, DressingActivity::class.java)
-            intent.putExtra(DressingActivity.LETTER, holder.clothName.text.toString())
-            context.startActivity(intent)
+        holder.cardItem.setOnClickListener {
+            chosenClothes.add(clothItem)
+            holder.cardItem.setChecked(!holder.cardItem.isChecked)
+            true
+           // val context = holder.view.context
+            // val intent = Intent(context, DressingActivity::class.java)
+           // intent.putExtra(DressingActivity.LETTER, holder.clothName.text.toString())
+           // context.startActivity(intent)
 
         }
     }

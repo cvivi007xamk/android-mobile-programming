@@ -40,7 +40,7 @@ class DressingAdapter(private val letterId: String, context: Context) :
 
     class DressViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val button = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
-        val clothName = view.findViewById<TextView>(R.id.dog_name)
+        val clothName = view.findViewById<TextView>(R.id.cloth_name)
     }
 
     override fun getItemCount(): Int = filteredWords.size

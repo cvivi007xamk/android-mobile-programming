@@ -164,7 +164,6 @@ object DataSource {
 
     )
 
-    val chosenClothes: List<Cloth> = mutableListOf()
 }
 
 

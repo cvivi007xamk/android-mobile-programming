@@ -8,7 +8,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:id="@+id/card_item"
-
+    android:clickable="true"
+    android:focusable="true"
+    android:checkable="true"
     app:cardElevation="4dp"
     app:cardCornerRadius="4dp">
 
@@ -16,19 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- TODO: Note that, unlike the grid view list, one card in the vertical and horizontal
-               lists effectively take up the width of the screen. This means you have more
-               room to display information spanning the width of the card.-->
-
-        <!-- TODO: Create an ImageView resource for the image of the dog.
-               The height should be 194dp
-               The width should match the with of the card
-               The scaleType should be set to centerCrop-->
-
-        <!-- TODO: Create a TextView for each of the following:
-                The dog's name
-                The dog's age
-                The dog's hobbies-->
         <ImageView
             android:id="@+id/cloth_image"
             android:layout_width="match_parent"
