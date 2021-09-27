@@ -25,6 +25,7 @@ class ClothingAdapter(private val context: Context?):
 
     val dataset = DataSource.clothes
     var chosenClothes: MutableList<Cloth> = mutableListOf()
+    var chosenClothesData = DataSource.chosenClothesData
 
     /**
      * Provides a reference for the views needed to display items in your list.
@@ -61,7 +62,7 @@ class ClothingAdapter(private val context: Context?):
         holder.clothName.text = clothItem.name
         holder.imageView.setImageResource(clothItem.imageResourceId)
         holder.cardItem.setOnClickListener {
-            chosenClothes.add(clothItem)
+            chosenClothesData.add(clothItem)
             holder.cardItem.setChecked(!holder.cardItem.isChecked)
             true
            // val context = holder.view.context

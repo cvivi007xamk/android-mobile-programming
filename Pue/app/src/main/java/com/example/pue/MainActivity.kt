@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pue.data.DataSource
 import com.example.pue.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -75,8 +76,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun moveToNextScreen() {
         intent = Intent(this, DressingActivity::class.java)
-        // move a list as extra
-      //  intent.putExtra(DressingActivity.LETTER, holder.clothName.text.toString())
+       // val NUMBER = DataSource.chosenClothesData.size
+
+        // Export a list size as extra
+      intent.putExtra(DressingActivity.NUMBER, DataSource.chosenClothesData.size.toString())
         startActivity(intent)
     }
 }

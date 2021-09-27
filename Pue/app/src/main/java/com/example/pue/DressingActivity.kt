@@ -8,10 +8,8 @@ import com.example.pue.databinding.ActivityDressingBinding
 
 class DressingActivity : AppCompatActivity() {
     companion object {
-        const val LETTER = "letter"
+        const val NUMBER = "number"
         const val SEARCH_PREFIX = "https://www.google.fi/search?q="
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,19 +19,22 @@ class DressingActivity : AppCompatActivity() {
         val binding = ActivityDressingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Retrieve the chosenClothes list
+
+
         // Retrieve the LETTER from the Intent extras
-        val letterId = intent?.extras?.getString(LETTER).toString()
+        val numberOfClothes = intent?.extras?.getString(NUMBER).toString()
 
 
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = DressingAdapter(letterId, this)
+        recyclerView.adapter = DressingAdapter(numberOfClothes, this)
 
         // Adds a [DividerItemDecoration] between items
         recyclerView.addItemDecoration(
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
 
-        title = getString(R.string.detail_prefix) + " " + letterId
+        title = getString(R.string.detail_prefix) + " " + numberOfClothes + " " + getString(R.string.kpl)
     }
 }

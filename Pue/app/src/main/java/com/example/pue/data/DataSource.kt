@@ -163,6 +163,7 @@ object DataSource {
         )
 
     )
+    var chosenClothesData: MutableList<Cloth> = mutableListOf()
 
 }
 
