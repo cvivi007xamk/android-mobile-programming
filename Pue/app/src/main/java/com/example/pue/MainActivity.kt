@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             recyclerView.layoutManager = GridLayoutManager(this, 4)
         }
-        recyclerView.adapter = ClothingAdapter()
+        recyclerView.adapter = ClothingAdapter(this)
     }
     // Function to change the menu icon drawable depending on isLinearLayoutManager
     private fun setIcon(menuItem: MenuItem?) {
