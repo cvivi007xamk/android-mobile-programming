@@ -1,19 +1,4 @@
-/*
- * Copyright (C) 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.example.wordsapp
+package com.example.pue
 
 import android.content.Intent
 import android.os.Build
@@ -22,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+
 
 /**
  * Adapter for the [RecyclerView] in [MainActivity].
  */
-class LetterAdapter :
-    RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
+class ClothingAdapter :
+    RecyclerView.Adapter<ClothingAdapter.ClothingViewHolder>() {
 
     // Generates a [CharRange] from 'A' to 'Z' and converts it to a list
     private val list = ('A').rangeTo('Z').toList()
@@ -37,8 +24,9 @@ class LetterAdapter :
     /**
      * Provides a reference for the views needed to display items in your list.
      */
-    class LetterViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+    class ClothingViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val button = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
+        val clothName = view.findViewById<TextView>(R.id.dog_name)
     }
 
     override fun getItemCount(): Int {
@@ -48,25 +36,25 @@ class LetterAdapter :
     /**
      * Creates new views with R.layout.item_view as its template
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LetterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothingViewHolder {
         val layout = LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_view, parent, false)
+            .from(parent.context)
+            .inflate(R.layout.item_view, parent, false)
         // Setup custom accessibility delegate to set the text read
         layout.accessibilityDelegate = Accessibility
-        return LetterViewHolder(layout)
+        return ClothingViewHolder(layout)
     }
 
     /**
      * Replaces the content of an existing view with new data
      */
-    override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ClothingViewHolder, position: Int) {
         val item = list.get(position)
-        holder.button.text = item.toString()
+        holder.clothName.text = item.toString()
         holder.button.setOnClickListener {
             val context = holder.view.context
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
+            val intent = Intent(context, DressingActivity::class.java)
+            intent.putExtra(DressingActivity.LETTER, holder.clothName.text.toString())
             context.startActivity(intent)
 
         }
