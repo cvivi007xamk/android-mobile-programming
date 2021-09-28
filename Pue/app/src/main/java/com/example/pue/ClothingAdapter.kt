@@ -31,8 +31,7 @@ class ClothingAdapter(private val context: Context?):
      * Provides a reference for the views needed to display items in your list.
      */
     class ClothingViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view!!.findViewById(R.id.cloth_image)
-        //Seuraavaa ei tarvita?
+        val imageView: ImageView = view.findViewById(R.id.cloth_image)
         val cardItem = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
         val clothName = view.findViewById<TextView>(R.id.cloth_name)
     }
@@ -61,10 +60,16 @@ class ClothingAdapter(private val context: Context?):
         val clothItem = dataset[position]
         holder.clothName.text = clothItem.name
         holder.imageView.setImageResource(clothItem.imageResourceId)
+        holder.cardItem.isChecked = clothItem.checked
         holder.cardItem.setOnClickListener {
-            chosenClothesData.add(clothItem)
+            if (chosenClothesData.contains(clothItem)) {
+                //remove item from list
+                chosenClothesData.remove(clothItem)
+
+            }
+            else chosenClothesData.add(clothItem)
             holder.cardItem.setChecked(!holder.cardItem.isChecked)
-            true
+            clothItem.checked = !clothItem.checked
            // val context = holder.view.context
             // val intent = Intent(context, DressingActivity::class.java)
            // intent.putExtra(DressingActivity.LETTER, holder.clothName.text.toString())

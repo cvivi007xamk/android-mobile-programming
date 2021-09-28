@@ -9,157 +9,188 @@ object DataSource {
         Cloth(
             R.drawable.sukat,
             "Sukat",
-            1
+            1,
+            false
         ),
         Cloth(
             R.drawable.sukkahousut,
             "Sukkahousut",
-            2
+            2,
+            false
         ),
         Cloth(
             R.drawable.shortsit,
             "Shortsit",
-            3
+            3,
+            false
         ),
         Cloth(
             R.drawable.housut,
             "Housut",
-            4
+            4,
+            false
         ),
         Cloth(
             R.drawable.hame,
             "Hame",
-            5
+            5,
+            false
         ),
         Cloth(
             R.drawable.toppi,
             "Toppi",
-            6
+            6,
+            false
         ),
         Cloth(
             R.drawable.tpaita,
             "T-Paita",
-            7
+            7,
+            false
         ),
         Cloth(
             R.drawable.pitkahihainen,
             "Pitkähihainen",
-            8
+            8,
+            false
         ),
         Cloth(
             R.drawable.pusero,
             "Pusero",
-            9
+            9,
+            false
         ),
         Cloth(
             R.drawable.neuletakki,
             "Neuletakki",
-            10
+            10,
+            false
         ),
         Cloth(
             R.drawable.mekko,
             "Mekko",
-            11
+            11,
+            false
         ),
         Cloth(
             R.drawable.villasukat,
             "Villasukat",
-            12
+            12,
+            false
         ),
         Cloth(
             R.drawable.fleecehaalari,
             "Fleecehaalari",
-            13
+            13,
+            false
         ),
         Cloth(
             R.drawable.toppahousut,
             "Toppahousut",
-            14
+            14,
+            false
         ),
         Cloth(
             R.drawable.toppatakki,
             "Toppatakki",
-            15
+            15,
+            false
         ),
         Cloth(
             R.drawable.haalari,
             "Haalari",
-            16
+            16,
+            false
         ),
         Cloth(
             R.drawable.kurahousut,
             "Kurahousut",
-            17
+            17,
+            false
         ),
         Cloth(
             R.drawable.sadetakki,
             "Sadetakki",
-            18
+            18,
+            false
         ),
         Cloth(
             R.drawable.sandaalit,
             "Sandaalit",
-            19
+            19,
+            false
         ),
         Cloth(
             R.drawable.lenkkarit,
             "Lenkkarit",
-            20
+            20,
+            false
         ),
         Cloth(
             R.drawable.kumisaappaat,
             "Saappaat",
-            21
+            21,
+            false
         ),
         Cloth(
             R.drawable.talvikengat,
             "Talvikengät",
-            22
+            22,
+            false
         ),
         Cloth(
             R.drawable.kaulahuivi,
             "Kaulahuivi",
-            23
+            23,
+            false
         ),
         Cloth(
             R.drawable.lippalakki,
             "Lippalakki",
-            24
+            24,
+            false
         ),
         Cloth(
             R.drawable.kyparamyssy,
             "Kypärämyssy",
-            25
+            25,
+            false
         ),
         Cloth(
             R.drawable.pipo,
             "Pipo",
-            26
+            26,
+            false
         ),
         Cloth(
             R.drawable.panta,
             "Panta",
-            27
+            27,
+            false
         ),
         Cloth(
             R.drawable.sormikkaat,
             "Sormikkaat",
-            28
+            28,
+            false
         ),
         Cloth(
             R.drawable.lapaset,
             "Lapaset",
-            29
+            29,
+            false
         ),
         Cloth(
             R.drawable.rukkaset,
             "Rukkaset",
-            30
+            30,
+            false
         ),
         Cloth(
             R.drawable.kurahanskat,
             "Kurahanskat",
-            31
+            31,
+            false
         )
 
     )

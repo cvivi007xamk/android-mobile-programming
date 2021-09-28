@@ -22,6 +22,9 @@ class DressingAdapter(private val letterId: String, context: Context) :
     RecyclerView.Adapter<DressingAdapter.DressViewHolder>() {
 
     var chosenClothesData = DataSource.chosenClothesData
+
+    //Järjestetään valitut vaatteet pukemisjärjestykseen
+    val sortedChosenClothesData = chosenClothesData.sortedBy { it.order }
     private val filteredWords: List<String>
 
 
@@ -50,7 +53,7 @@ class DressingAdapter(private val letterId: String, context: Context) :
         val imageView: ImageView = view.findViewById(R.id.cloth_image)
     }
 
-    override fun getItemCount(): Int = chosenClothesData.size
+    override fun getItemCount(): Int = sortedChosenClothesData.size
 
     /**
      * Creates new views with R.layout.item_view as its template
@@ -69,7 +72,7 @@ class DressingAdapter(private val letterId: String, context: Context) :
      */
     override fun onBindViewHolder(holder: DressViewHolder, position: Int) {
 
-        val item = chosenClothesData[position]
+        val item = sortedChosenClothesData[position]
         // Needed to call startActivity
         val context = holder.view.context
 
