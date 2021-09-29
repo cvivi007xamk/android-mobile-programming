@@ -18,33 +18,14 @@ import com.example.pue.data.DataSource
 /**
  * Adapter for the [RecyclerView] in [DressingActivity].
  */
-class DressingAdapter(private val letterId: String, context: Context) :
+class DressingAdapter(context: Context) :
     RecyclerView.Adapter<DressingAdapter.DressViewHolder>() {
 
     var chosenClothesData = DataSource.chosenClothesData
 
     //Järjestetään valitut vaatteet pukemisjärjestykseen
     val sortedChosenClothesData = chosenClothesData.sortedBy { it.order }
-    private val filteredWords: List<String>
 
-
-    // Seuraaavaa ei tarvita?
-    init {
-        // Retrieve the list of words from res/values/arrays.xml
-        val words = context.resources.getStringArray(R.array.words).toList()
-
-        filteredWords = words
-            // Returns items in a collection if the conditional clause is true,
-            // in this case if an item starts with the given letter,
-            // ignoring UPPERCASE or lowercase.
-            .filter { it.startsWith(letterId, ignoreCase = true) }
-            // Returns a collection that it has shuffled in place
-            .shuffled()
-            // Returns the first n items as a [List]
-            .take(5)
-            // Returns a sorted version of that [List]
-            .sorted()
-    }
     // Näitä taas tarvitaan
 
     class DressViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -81,7 +62,7 @@ class DressingAdapter(private val letterId: String, context: Context) :
         holder.imageView.setImageResource(item.imageResourceId)
 
         holder.cardItem.setOnClickListener {
-           // Add code to flip the card
+           // TODO: Add code to flip the card and remove from chosenlist
         }
 // How to implicit intent to Google
         //holder.button.setOnClickListener {

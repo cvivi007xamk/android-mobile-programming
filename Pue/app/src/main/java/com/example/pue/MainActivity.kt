@@ -1,5 +1,6 @@
 package com.example.pue
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pue.data.DataSource
 import com.example.pue.databinding.ActivityMainBinding
+import android.util.DisplayMetrics
+
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -20,12 +25,25 @@ class MainActivity : AppCompatActivity() {
     //Variable to handle grid/linear layout state. This is changed from the menu button.
     private var isLinearLayoutManager = true
 
+
+        //code from https://stackoverflow.com/questions/33575731/gridlayoutmanager-how-to-auto-fit-columns
+        // This autofits gridlayout columns with the screen size (and orientation). columnWidth is passsed in as parameter when called.
+
+        private fun RecyclerView.autoFitColumns(columnWidth: Int) {
+            val displayMetrics = this.context.resources.displayMetrics
+            val noOfColumns = ((displayMetrics.widthPixels / displayMetrics.density) / columnWidth).toInt()
+            this.layoutManager = GridLayoutManager(this.context, noOfColumns)
+        }
+
     // Function to set layoutmanager (grid/linear) depending on the state (value of isLinearLayoutManager)
     private fun chooseLayout() {
         if (isLinearLayoutManager) {
             recyclerView.layoutManager = LinearLayoutManager(this)
         } else {
-            recyclerView.layoutManager = GridLayoutManager(this, 4)
+                // recyclerView.layoutManager = GridLayoutManager(this, 4)
+                // Let's use the function found from stackoverflow here instead of passing an integer as spanCount.
+            recyclerView.autoFitColumns(180)
+
         }
         recyclerView.adapter = ClothingAdapter(this)
     }
@@ -61,7 +79,6 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
