@@ -27,7 +27,6 @@ class DressingAdapter(context: Context) :
 
     // Update the order of the list according to drag and drop
     fun moveItem(fromPosition: Int, toPosition: Int): Boolean {
-        Log.d("Vaatteet ennen siirtoa", chosenClothes.toString())
 
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
@@ -39,7 +38,6 @@ class DressingAdapter(context: Context) :
             }
         }
         notifyItemMoved(fromPosition, toPosition)
-        Log.d("Vaatteet siirron jälkee", chosenClothes.toString())
         return true
     }
 
