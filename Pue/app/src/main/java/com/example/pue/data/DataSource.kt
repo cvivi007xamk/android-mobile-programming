@@ -194,7 +194,7 @@ object DataSource {
         )
 
     )
-    var chosenClothesData: MutableList<Cloth> = mutableListOf()
+    var chosenClothes: MutableList<Cloth> = mutableListOf()
 
 }
 

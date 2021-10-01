@@ -1,19 +1,21 @@
 package com.example.pue
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityNodeInfo
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pue.data.DataSource
+import java.util.*
 
 /**
  * Adapter for the [RecyclerView] in [DressingActivity].
@@ -21,20 +23,39 @@ import com.example.pue.data.DataSource
 class DressingAdapter(context: Context) :
     RecyclerView.Adapter<DressingAdapter.DressViewHolder>() {
 
-    var chosenClothesData = DataSource.chosenClothesData
+    private var chosenClothes = DataSource.chosenClothes
 
-    //Järjestetään valitut vaatteet pukemisjärjestykseen
-    val sortedChosenClothesData = chosenClothesData.sortedBy { it.order }
+    // Update the order of the list according to drag and drop
+    fun moveItem(fromPosition: Int, toPosition: Int): Boolean {
+        Log.d("Vaatteet ennen siirtoa", chosenClothes.toString())
 
-    // Näitä taas tarvitaan
-
-    class DressViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val cardItem = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
-        val clothName = view.findViewById<TextView>(R.id.cloth_name)
-        val imageView: ImageView = view.findViewById(R.id.cloth_image)
+        if (fromPosition < toPosition) {
+            for (i in fromPosition until toPosition) {
+                Collections.swap(chosenClothes, i, i + 1)
+            }
+        } else {
+            for (i in fromPosition downTo toPosition + 1) {
+                Collections.swap(chosenClothes, i, i - 1)
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition)
+        Log.d("Vaatteet siirron jälkee", chosenClothes.toString())
+        return true
     }
 
-    override fun getItemCount(): Int = sortedChosenClothesData.size
+    class DressViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val cardItem =
+            view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.card_item)
+        val clothName = view.findViewById<TextView>(R.id.cloth_name)
+        val imageView: ImageView = view.findViewById(R.id.cloth_image)
+        val cardBackText = view.findViewById<TextView>(R.id.puettu_text)
+        val thumbImageView: ImageView = view.findViewById(R.id.thumb_image)
+        val cardFront = view.findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.view_card_front)
+        val cardBack = view.findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.view_card_back)
+
+    }
+
+    override fun getItemCount(): Int = chosenClothes.size
 
     /**
      * Creates new views with R.layout.item_view as its template
@@ -44,7 +65,7 @@ class DressingAdapter(context: Context) :
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
         // Setup custom accessibility delegate to set the text read
-        layout.accessibilityDelegate = Accessibility
+        layout.accessibilityDelegate = ClothingAdapter
         return DressViewHolder(layout)
     }
 
@@ -53,25 +74,35 @@ class DressingAdapter(context: Context) :
      */
     override fun onBindViewHolder(holder: DressViewHolder, position: Int) {
 
-        val item = sortedChosenClothesData[position]
+        holder.cardBack.visibility = View.GONE
+
+        val item = chosenClothes[position]
         // Needed to call startActivity
-        val context = holder.view.context
+       val context = holder.view.context
 
         // Set the text of the WordViewHolder
         holder.clothName.text = item.name
         holder.imageView.setImageResource(item.imageResourceId)
+        //holder.thumbImageView.setImageResource()
+        holder.cardBackText.text = item.name + " puettu"
 
+        // Flip the card (if already flipped, then flip back again)
         holder.cardItem.setOnClickListener {
-           // TODO: Add code to flip the card and remove from chosenlist
+            if (holder.cardBack.visibility == View.GONE) {
+                flipCard(context, holder.cardBack, holder.cardFront)
+            }
+            else {
+                flipCard(context, holder.cardFront, holder.cardBack)
+            }
         }
-// How to implicit intent to Google
+
+// How to implicit intent to Google if wanted
         //holder.button.setOnClickListener {
-           // val queryUrl: Uri = Uri.parse("${DressingActivity.SEARCH_PREFIX}${item}")
-           // val intent = Intent(Intent.ACTION_VIEW, queryUrl)
-           // context.startActivity(intent)
+        // val queryUrl: Uri = Uri.parse("${DressingActivity.SEARCH_PREFIX}${item}")
+        // val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+        // context.startActivity(intent)
 
-        }
-
+    }
 
     // Setup custom accessibility delegate to set the text read with
     // an accessibility service
@@ -95,4 +126,40 @@ class DressingAdapter(context: Context) :
             info?.addAction(customClick)
         }
     }
+
+    /**
+     * Flips the card with flip animation
+     */
+    fun flipCard(context: Context, visibleView: View, inVisibleView: View) {
+        try {
+            //visibleView.setVisibility(View.VISIBLE)
+            visibleView.visibility = View.VISIBLE
+            val scale = context.resources.displayMetrics.density
+            val cameraDist = 8000 * scale
+            visibleView.cameraDistance = cameraDist
+            inVisibleView.cameraDistance = cameraDist
+            val flipOutAnimatorSet =
+                AnimatorInflater.loadAnimator(
+                    context,
+                    R.animator.flip_out
+                ) as AnimatorSet
+            flipOutAnimatorSet.setTarget(inVisibleView)
+            val flipInAnimatorSet =
+                AnimatorInflater.loadAnimator(
+                    context,
+                    R.animator.flip_in
+                ) as AnimatorSet
+            flipInAnimatorSet.setTarget(visibleView)
+            flipOutAnimatorSet.start()
+            flipInAnimatorSet.start()
+            flipInAnimatorSet.doOnEnd {
+                inVisibleView.visibility = View.GONE
+                //inVisibleView.setVisibility(View.GONE)
+            }
+        } catch (e: Exception) {
+            Log.d("VIRHE!:", e.toString())        }
+    }
+
+    //=====================================
+
 }

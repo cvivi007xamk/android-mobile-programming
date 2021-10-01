@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Pue</string>
-    <string name="dog_age">Age: %1$s</string>
-    <string name="dog_hobbies">Hobbies: %1$s</string>
+    <string name="app_name">Opi pukemaan</string>
+
     <string name="vertical">Vertical</string>
     <string name="horizontal">Horizontal</string>
     <string name="grid">Grid</string>
@@ -9,7 +8,10 @@
     <string name="detail_prefix">Valitut vaatteet</string>
     <string name="action_switch_layout">Switch Layout</string>
     <string name="look_up_word">Look up word in a Browser Search</string>
-    <string name="look_up_words">Show Stored Words</string>
-    <string name="valmis">Valmis</string>
+    <string name="valmis">Siirry pukemaan</string>
     <string name="kpl">kpl</string>
+    <string name="valmis2">Valmis</string>
+    <string name="hienoa">Hienoa!</string>
+    <string name="palaa_alkuun">Palaa alkuun</string>
+    <string name="kaikki_vaatteet_meniv_t_oikein_p_lle">Kaikki vaatteet menivät oikein päälle!</string>
 </resources>

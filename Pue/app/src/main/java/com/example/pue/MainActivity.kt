@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pue.data.DataSource
 import com.example.pue.databinding.ActivityMainBinding
 import android.util.DisplayMetrics
-
-
+import android.view.View
+import android.view.ViewGroup
 
 
 class MainActivity : AppCompatActivity() {
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
        // val NUMBER = DataSource.chosenClothesData.size
 
         // Export a list size as extra
-      intent.putExtra(DressingActivity.NUMBER, DataSource.chosenClothesData.size.toString())
+      intent.putExtra(DressingActivity.NUMBER, DataSource.chosenClothes.size.toString())
         startActivity(intent)
     }
 }

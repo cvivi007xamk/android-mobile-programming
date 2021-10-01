@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pue">
         <activity
+            android:name=".FinalActivity"
+            android:exported="true" />
+        <activity
             android:name=".DressingActivity"
             android:exported="true" />
         <activity
