@@ -130,6 +130,7 @@ class DressingAdapter(context: Context) :
     /**
      * Flips the card with flip animation
      */
+    // Code from here https://medium.com/geekculture/how-to-add-card-flip-animation-in-the-android-app-3060afeadd45
     fun flipCard(context: Context, visibleView: View, inVisibleView: View) {
         try {
             //visibleView.setVisibility(View.VISIBLE)
