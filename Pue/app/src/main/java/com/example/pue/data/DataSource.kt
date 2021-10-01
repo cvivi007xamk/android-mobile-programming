@@ -13,7 +13,7 @@ object DataSource {
             false
         ),
         Cloth(
-            R.drawable.sukkahousut,
+            R.drawable.sukkahousut1,
             "Sukkahousut",
             2,
             false
