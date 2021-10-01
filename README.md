@@ -1,45 +1,23 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+## Repository structure
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+This repository includes two directories:
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+1. Coursework: This directory includes the learning diary and all material from the exercise projects that were done during this course. These include mostly the Android Developer course apps. All of those apps/projects are in their own folders (they include Affirmations, Dogglers, Lemonade, TipCalculator and Words).
 
----
-
-## Edit a file
-
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
-
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+2. Pue: This directory includes the project that was done during this course (as a main task). You can download the whole repository and open any of the folders as a project in Android Studio and they should work fine.
 
 ---
 
-## Create a file
+## How to run/use the project app Pue
 
-Next, you’ll add a new file to this repository.
+This app can be run from Android Studio (in a virtual device). Or if you want to, the app can be compiled as apk and installed on an Android Device.
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+## Main Objective of the app (how to use it)
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+The apps main objective is to be used as a learning method in childcare to teach children how to dress themselves and in which order should different clothing items be put on.
 
----
+The app starts in MainActivity screen where a list of clothing items are presented. The layout can be changed from the menu button (top right corner) as a grid layout. In this screen the user (kindergarten teacher) chooses the clothing items that the child should dress. The chosen items are indicated as selected cards.
 
-## Clone a repository
+When all items that want to be dressed are chosen the user clicks the "Siirry pukemaan" button, which takes the user to second screen (DressingActivity). In this screen the layout is by default a grid, but can be changed again from the menu button. This screen shows the chosen clothing items that are arranged in the usual dressing order (this was important, because the children must be taught in which order the items should be put on). The order can be rearranged by holding and dragging a card to different location. After the order is approved by the teacher, the device can be handed over to the child. When an item is put on the child (or the teacher) clicks on the item and it flips around showing a thumb up button. This can be reversed by clicking the card again. After all clothing items have been put on, the user can click the "Valmis" button, which takes him/her to the third screen (FinalActivity).
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+In the final screen only a thumbs up figure is shown with congratulatory text. In this screen there is a button "Palaa alkuun" that takes the user to the first screen and resets the chosen clothing items.
