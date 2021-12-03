@@ -1,3 +1,5 @@
+### Submission for Mobile Programming course at LUT university. The main app is a dress up app for kindergarteb teachers to teach children to put their clothes on in the correct order.
+
 ## VILLE VIRTANEN
 
 ## Repository structure
